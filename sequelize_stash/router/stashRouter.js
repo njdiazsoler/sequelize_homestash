@@ -10,5 +10,6 @@ StashRouter.route('/:stashId')
 StashRouter.route('/:stashId/items')
   .get(stashController.getItemsData)
   .post(stashController.createItem)
+  .put(stashController.updateItem)
 
 module.exports = StashRouter;

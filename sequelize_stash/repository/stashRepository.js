@@ -13,9 +13,9 @@ const Stash = require('../models/Stash');
 
 const findStash = async id => {
   try {
-    let searchResults = await Stash.findByPk(id);
+    const searchResults = await Stash.findByPk(id);
     if (searchResults && searchResults.dataValues) {
-      const stash = stash.dataValues;
+      const stash = searchResults.dataValues;
       return stash;
     }
     return null;

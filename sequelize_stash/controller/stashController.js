@@ -3,11 +3,12 @@ const itemService = require('../service/itemService');
 
 const getStashData = async (req, res) => {
   try {
-    const {id} = req.params;
-    if (!id) {
+    const { stashId } = req.params;
+    console.log('controller', req.params)
+    if (!stashId) {
       return res.status(400).json({ message: 'Invalid request' });
     }
-    const stashData = await stashService.getStashData(id);
+    const stashData = await stashService.getStashData(stashId);
     if(!stashData){
       return res.status(404).json({ message: 'No results found' })
     }
@@ -43,10 +44,19 @@ const getItemsData = async (req, res) => {
     }
     console.log('stashId is: ', req.params.stashId)
     const itemsData = await itemService.getItemsData(req.params.stashId);
-    console.log('itemsData value is: ', itemsData)
-    return res.status(200).json({ itemsData });
+    return res.status(200).json(itemsData);
   } catch (error) {
     return res.status(status).json({ message });
+  }
+}
+
+const updateItem = async (req, res) => {
+  try {
+    console.log('updating item...');
+    const updateData = await itemService.updateItem(req.body);
+    return res.status(200).json(updateData);
+  } catch(error) {
+    return res.status(400).json({ message: 'Bad Request' });
   }
 }
 
@@ -54,4 +64,5 @@ module.exports = {
   createItem,
   getStashData,
   getItemsData,
+  updateItem
 }
