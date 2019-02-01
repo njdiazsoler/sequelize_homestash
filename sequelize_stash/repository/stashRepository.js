@@ -1,29 +1,31 @@
 const Stash = require('../models/Stash');
 
-const createStash = async stash => {
-  try {
-    let newStash = await Stash.create(stash);
-    newStash = newStash.dataValues;
-    return newStash
-  } catch(error) {
-    console.log(error);
-    throw { status: 500, message: 'Internal Server Error' }
-  }
-}
+// const createStash = async stash => {
+//   try {
+//     let createdStash = await Stash.create(stash);
+//     newStash = createdStash.dataValues;
+//     return newStash;
+//   } catch(error) {
+//     console.log(error);
+//     throw { status: 500, message: 'Internal Server Error' };
+//   }
+// }
 
 const findStash = async id => {
   try {
-    let stash = await Stash.findByPk(id);
-    if(stash && stash.dataValues)
-      stash = stash.dataValues
+    let searchResults = await Stash.findByPk(id);
+    if (searchResults && searchResults.dataValues) {
+      const stash = stash.dataValues;
       return stash;
-  } catch(error) {
+    }
+    return null;
+  } catch (error) {
     console.log('this is a repo error', error);
-    throw { status: 500, message: 'Internal Server Error' }
+    throw { status: 500, message: 'Internal Server Error' };
   }
 }
 
 module.exports = {
-  createStash,
+  // createStash,
   findStash,
 }

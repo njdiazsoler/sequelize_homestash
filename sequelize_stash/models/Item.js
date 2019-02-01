@@ -36,7 +36,7 @@ const Item = db.define('item', {
   // },
 })
 
-Item.belongsTo(Stash);
+// Item.belongsTo(Stash);
 
 Item.sync();
 

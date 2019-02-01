@@ -20,6 +20,8 @@ const Stash = db.define('stash', {
   },
 })
 
+Stash.hasMany(Item);
+
 Stash.sync();
 
 module.exports = Stash;

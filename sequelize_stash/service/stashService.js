@@ -5,7 +5,7 @@ const getStashData = async id => {
     const stash = await StashRepository.findStash(id);
     return stash;
   } catch (error) {
-    throw { status: error.status, message: error.message || error }
+    throw { status: error.status, message: error.message || error };
   }
 }
 
