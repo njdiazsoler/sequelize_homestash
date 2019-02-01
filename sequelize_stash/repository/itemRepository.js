@@ -6,7 +6,7 @@ const createItem = async item => {
     newItem = newItem.dataValues;
     return newItem;
   } catch (error) {
-    console.log(error);
+    console.log('this is a repo error', error);
     throw { status: 500, message: 'Internal Server Error' };
   }
 }
@@ -21,15 +21,24 @@ const findAllItems = async stashId => {
   }
 }
 
+const findItem = async id => {
+  try {
+    console.log('fetching item...');
+    const currentItem = await Item.findByPk(id);
+    return currentItem.dataValues;
+  } catch (error) {
+    console.log('this is a repo error', error);
+    throw { status: 500, message: 'Internal Server Error' };
+  }
+}
+
 const updateItem = async item => {
   try {
-    console.log('repository');
-    // const currentItem = await Item.findByPk(item.id);
-    console.log(item);
-    const updatedItem = await Item.update({ values: item }, {where: {id: item.id}})
+    console.log('repository', item);
+    const updatedItem = await Item.update(item, { where: { id: item.id } })
     console.log('updatedItem');
     return updatedItem;
-  } catch(error) {
+  } catch (error) {
     throw { status: 500, message: 'Internal Server Error' };
   }
 }
@@ -37,5 +46,6 @@ const updateItem = async item => {
 module.exports = {
   createItem,
   findAllItems,
-  updateItem
+  findItem,
+  updateItem,
 }
