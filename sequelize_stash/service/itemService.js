@@ -9,6 +9,16 @@ const createItem = async item => {
   }
 }
 
+const deleteItem =  async id => {
+  try {
+    const deletedItem = await itemRepository.deleteItem(id);
+    console.log('itemService: deletedItem returned ', deletedItem);
+    return true
+  } catch(error) {
+    throw { status: error.status, message: error.message || error }
+  }
+}
+
 const getItemsData = async id => {
   try {
     const itemsData = await itemRepository.findAllItems(id);
@@ -42,6 +52,7 @@ const updateItem = async item => {
 
 module.exports = {
   createItem,
+  deleteItem,
   getItemsData,
   getOneItem,
   updateItem,

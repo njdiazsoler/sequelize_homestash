@@ -17,6 +17,28 @@ const createItem = async (req, res) => {
   }
 }
 
+const deleteItem = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res.status(400).json({ message: 'Invalid request' });
+    }
+    const deletedItem = await itemService.deleteItem(req.params.id);
+    console.log('deleteItem returned ', deletedItem);
+    return res.status(200).json({ message: 'Item deleted' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+const getAllStashes = async (req, res) => {
+  try {
+    const stashData = await stashService.getAllStashes();
+    return res.status(200).json({ stashData })
+  } catch(error) {
+    return res.status(status).json({ message });
+  }
+}
+
 const getStashData = async (req, res) => {
   try {
     const { stashId } = req.params;
@@ -47,12 +69,12 @@ const getItemsData = async (req, res) => {
 
 const getOneItem = async (req, res) => {
   try {
-    if(!req.params.id){
+    if (!req.params.id) {
       return res.status(400).json({ error: 'Bad request' });
     }
     const itemData = await itemService.getOneItem(req.params.id);
     return res.status(200).json(itemData);
-  } catch(error) {
+  } catch (error) {
     return res.status(400).json({ message: 'Bad Request' });
   }
 }
@@ -71,6 +93,8 @@ const updateItem = async (req, res) => {
 
 module.exports = {
   createItem,
+  deleteItem,
+  getAllStashes,
   getStashData,
   getItemsData,
   getOneItem,

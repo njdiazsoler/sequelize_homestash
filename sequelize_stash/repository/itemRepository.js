@@ -11,6 +11,16 @@ const createItem = async item => {
   }
 }
 
+const deleteItem = async id => {
+  try {
+    let deletedItem = await Item.destroy({ where: { id: id } });
+    return deletedItem;
+  } catch (error) {
+    console.log('this is a repo error', error);
+    throw { status: 500, message: 'Internal Server Error' };
+  }
+}
+
 const findAllItems = async stashId => {
   try {
     const itemsData = await Item.findAll({ where: { stashId: stashId } })
@@ -45,6 +55,7 @@ const updateItem = async item => {
 
 module.exports = {
   createItem,
+  deleteItem,
   findAllItems,
   findItem,
   updateItem,

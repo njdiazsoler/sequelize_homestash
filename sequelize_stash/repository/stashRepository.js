@@ -11,6 +11,15 @@ const Stash = require('../models/Stash');
 //   }
 // }
 
+const getAllStashes = async () => {
+  try{
+    const results = await Stash.findAll();
+    return results
+  } catch(error){
+    throw { status: 500, message: 'Internal Server Error' };
+  }
+}
+
 const findStash = async id => {
   try {
     const searchResults = await Stash.findByPk(id);
@@ -28,4 +37,5 @@ const findStash = async id => {
 module.exports = {
   // createStash,
   findStash,
+  getAllStashes,
 }
