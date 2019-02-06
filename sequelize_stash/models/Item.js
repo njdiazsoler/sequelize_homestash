@@ -3,10 +3,13 @@ const db = require('../config/db');
 const uuid = require('uuid/v4');
 const Stash = require('./Stash')
 
+
 const Item = db.define('item', {
   id: {
     allowNull: false,
-    defaultValue: uuid(),
+    defaultValue: function(){
+      let newDate = uuid(); return newDate
+    },
     primaryKey: true,
     type: Sequelize.UUID,
   },
@@ -25,18 +28,31 @@ const Item = db.define('item', {
   },
   estimatedDurability: {
     allowNull: true,
-    type: Sequelize.DATEONLY,
+    type: Sequelize.DATE,
   },
   purchaseDate: {
     allowNull: false,
-    type: Sequelize.DATEONLY,
+    type: Sequelize.DATE,
   },
-  // stashId : {
-  //   type: Sequelize.INTEGER,
-  // },
+  createdAt: {
+    type: Sequelize.DATE,
+    // defaultValue: Sequelize.DATE,
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+    // defaultValue: Sequelize.DATE,
+  },
+},{
+  timestamps: true
 })
 
-// Item.belongsTo(Stash);
+// Item.associate = (models) => {
+//   Item.belongsTo(models.Stash, { foreignKey: 'stashId', targetKey: 'id' });
+// }
+
+Item.belongsTo(Stash, { foreignKey: 'stashId', sourceKey: 'id' });
+
+// { as: 'stash', foreignKey: 'stashId' }
 
 Item.sync();
 

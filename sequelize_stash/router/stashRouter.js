@@ -1,21 +1,20 @@
 const express = require('express');
-// const itemController = require('../controller/itemController')
 const stashController = require('../controller/stashController');
 const StashRouter = express.Router();
 
 StashRouter.route('/')
-  .get(stashController.getAllStashes);
+  .get(stashController.getAllStashes)
+  .post(stashController.createStash);
 
-StashRouter.route('/:stashId')
-  .get(stashController.getStashData);
-// .post(stashController.createStash)
+// StashRouter.route('/:stashId')
+//   .get(stashController.getStashData);
 
-StashRouter.route('/:stashId/items')
+StashRouter.route('/:stashId/')
   .get(stashController.getItemsData)
   .post(stashController.createItem)
   .put(stashController.updateItem)
 
-StashRouter.route('/:stashId/items/:id')
+StashRouter.route('/:stashId/:itemId')
   .get(stashController.getOneItem)
   .delete(stashController.deleteItem);
 

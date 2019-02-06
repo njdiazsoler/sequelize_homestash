@@ -1,6 +1,18 @@
 const stashService = require('../service/stashService');
 const itemService = require('../service/itemService');
 
+const createStash = async (req, res) => {
+  try {
+    const { name, createdById } = req.body;
+    if (!name || !createdById) {
+      return res.status(400).json({ error: 'Invalid request' });
+    }
+    const newStashCreated = await stashService.createStash(name, createdById);
+    return res.status(200).json({ newStashData: newStashCreated})
+  } catch (error) { }
+    return res.status(500).json({ message: error.message })
+}
+
 const createItem = async (req, res) => {
   try {
     if (!req.body) {
@@ -34,17 +46,18 @@ const getAllStashes = async (req, res) => {
   try {
     const stashData = await stashService.getAllStashes();
     return res.status(200).json({ stashData })
-  } catch(error) {
+  } catch (error) {
     return res.status(status).json({ message });
   }
 }
 
 const getStashData = async (req, res) => {
   try {
-    const { stashId } = req.params;
+    const { stashId } = req.body;
     if (!stashId) {
       return res.status(400).json({ message: 'Invalid request' });
     }
+    console.log(req.body)
     const stashData = await stashService.getStashData(stashId);
     if (!stashData) {
       return res.status(404).json({ message: 'No results found' })
@@ -57,10 +70,10 @@ const getStashData = async (req, res) => {
 
 const getItemsData = async (req, res) => {
   try {
-    if (!req.params.stashId) {
+    if (!req.body.stashId) {
       return res.status(400).json({ error: 'Invalid request' });
     }
-    const itemsData = await itemService.getItemsData(req.params.stashId);
+    const itemsData = await itemService.getItemsData(req.body.stashId);
     return res.status(200).json(itemsData);
   } catch (error) {
     return res.status(status).json({ message });
@@ -93,6 +106,7 @@ const updateItem = async (req, res) => {
 
 module.exports = {
   createItem,
+  createStash,
   deleteItem,
   getAllStashes,
   getStashData,
