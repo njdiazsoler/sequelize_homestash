@@ -9,12 +9,12 @@ StashRouter.route('/')
 // StashRouter.route('/:stashId')
 //   .get(stashController.getStashData);
 
-StashRouter.route('/:stashId/')
+StashRouter.route('/:name')
   .get(stashController.getItemsData)
   .post(stashController.createItem)
   .put(stashController.updateItem)
 
-StashRouter.route('/:stashId/:itemId')
+StashRouter.route('/:name/:itemId')
   .get(stashController.getOneItem)
   .delete(stashController.deleteItem);
 

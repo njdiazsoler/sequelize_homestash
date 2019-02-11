@@ -16,7 +16,7 @@ const createStash = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     if (!req.body) {
-      return res.status(400).json({ error: 'Invalid request' });
+      return res.status(400).json({ error: 'No body in request' });
     }
     const { name, quantityAmount, quantityType, estimatedDurability, purchaseDate, stashId } = req.body
     if (!name || !quantityAmount || !quantityType || !estimatedDurability || !purchaseDate || !stashId) {
@@ -34,7 +34,8 @@ const deleteItem = async (req, res) => {
     if (!req.params.id) {
       return res.status(400).json({ message: 'Invalid request' });
     }
-    const deletedItem = await itemService.deleteItem(req.params.id);
+    console.log(req.params)
+    const deletedItem = await itemService.deleteItem(req.body);
     console.log('deleteItem returned ', deletedItem);
     return res.status(200).json({ message: 'Item deleted' });
   } catch (error) {
@@ -70,10 +71,10 @@ const getStashData = async (req, res) => {
 
 const getItemsData = async (req, res) => {
   try {
-    if (!req.body.stashId) {
+    if (!req.params.name) {
       return res.status(400).json({ error: 'Invalid request' });
     }
-    const itemsData = await itemService.getItemsData(req.body.stashId);
+    const itemsData = await itemService.getItemsData(req.params.name);
     return res.status(200).json(itemsData);
   } catch (error) {
     return res.status(status).json({ message });

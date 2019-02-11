@@ -2,6 +2,7 @@ const itemRepository = require('../repository/itemRepository');
 
 const createItem = async item => {
   try {
+    console.log(`${item} reached Service`)
     const newUser = await itemRepository.createItem(item);
     return newUser;
   } catch (error) {
@@ -19,9 +20,9 @@ const deleteItem =  async id => {
   }
 }
 
-const getItemsData = async id => {
+const getItemsData = async name => {
   try {
-    const itemsData = await itemRepository.findAllItems(id);
+    const itemsData = await itemRepository.findAllItems(name);
     return itemsData;
   } catch (error) {
     throw { status: error.status, message: error.message || error }

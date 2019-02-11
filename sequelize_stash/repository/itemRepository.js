@@ -1,7 +1,9 @@
 const Item = require('../models/Item');
+const Stash = require('../models/Stash')
 
 const createItem = async item => {
   try {
+    console.log(`${item} reached Repository`)
     let newItem = await Item.create(item);
     newItem = newItem.dataValues;
     return newItem;
@@ -21,9 +23,11 @@ const deleteItem = async id => {
   }
 }
 
-const findAllItems = async stashId => {
+const findAllItems = async name => {
   try {
-    const itemsData = await Item.findAll({ where: { stashId: stashId } })
+    const searchResults = await Stash.findOne({ where: { name: name }});
+    const stashId = searchResults.dataValues.id;
+    const itemsData = await Item.findAll({ where: { stashId: stashId } });
     return itemsData
   } catch (error) {
     console.log('this is a repo error', error);
