@@ -13,9 +13,10 @@ const createItem = async item => {
   }
 }
 
-const deleteItem = async id => {
+const deleteItem = async item => {
   try {
-    let deletedItem = await Item.destroy({ where: { id: id } });
+    console.log('el id del item es: ', item.itemId)
+    let deletedItem = await Item.destroy({ where: { id: item.itemId } });
     return deletedItem;
   } catch (error) {
     console.log('this is a repo error', error);

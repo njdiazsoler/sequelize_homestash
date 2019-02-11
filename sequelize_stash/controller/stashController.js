@@ -31,11 +31,11 @@ const createItem = async (req, res) => {
 
 const deleteItem = async (req, res) => {
   try {
-    if (!req.params.id) {
+    if (!req.params.itemId) {
       return res.status(400).json({ message: 'Invalid request' });
     }
     console.log(req.params)
-    const deletedItem = await itemService.deleteItem(req.body);
+    const deletedItem = await itemService.deleteItem(req.params);
     console.log('deleteItem returned ', deletedItem);
     return res.status(200).json({ message: 'Item deleted' });
   } catch (error) {

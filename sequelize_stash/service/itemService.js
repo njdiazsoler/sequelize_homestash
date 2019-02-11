@@ -10,9 +10,10 @@ const createItem = async item => {
   }
 }
 
-const deleteItem =  async id => {
+const deleteItem =  async item => {
   try {
-    const deletedItem = await itemRepository.deleteItem(id);
+    console.log(`An item reached Service`, item)
+    const deletedItem = await itemRepository.deleteItem(item);
     console.log('itemService: deletedItem returned ', deletedItem);
     return true
   } catch(error) {
