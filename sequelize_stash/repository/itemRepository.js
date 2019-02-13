@@ -38,7 +38,7 @@ const findAllItems = async name => {
 
 const findItem = async id => {
   try {
-    console.log('fetching item...');
+    console.log('fetching item with id ', id);
     const currentItem = await Item.findByPk(id);
     return currentItem.dataValues;
   } catch (error) {
@@ -47,11 +47,11 @@ const findItem = async id => {
   }
 }
 
-const updateItem = async item => {
+const updateItem = async (item) => {
   try {
     console.log('repository', item);
     const updatedItem = await Item.update(item, { where: { id: item.id } })
-    console.log('updatedItem');
+    console.log('updatedItem: ', updatedItem);
     return updatedItem;
   } catch (error) {
     throw { status: 500, message: 'Internal Server Error' };

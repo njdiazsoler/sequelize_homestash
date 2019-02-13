@@ -12,10 +12,10 @@ StashRouter.route('/')
 StashRouter.route('/:name')
   .get(stashController.getItemsData)
   .post(stashController.createItem)
-  .put(stashController.updateItem)
-
-StashRouter.route('/:name/:itemId')
+  
+  StashRouter.route('/:name/:itemId')
+  .delete(stashController.deleteItem)
   .get(stashController.getOneItem)
-  .delete(stashController.deleteItem);
+  .put(stashController.updateItem)
 
 module.exports = StashRouter;

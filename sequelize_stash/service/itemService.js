@@ -2,7 +2,7 @@ const itemRepository = require('../repository/itemRepository');
 
 const createItem = async item => {
   try {
-    console.log(`${item} reached Service`)
+    console.log('A creation request reached the Service!', item)
     const newUser = await itemRepository.createItem(item);
     return newUser;
   } catch (error) {
@@ -39,7 +39,7 @@ const getOneItem = async id => {
   }
 }
 
-const updateItem = async item => {
+const updateItem = async (item) => {
   try {
     const currentItem = await itemRepository.findItem(item.id);
     if (!currentItem) {

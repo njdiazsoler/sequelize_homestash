@@ -18,11 +18,13 @@ const createItem = async (req, res) => {
     if (!req.body) {
       return res.status(400).json({ error: 'No body in request' });
     }
+    console.log('starting item creation with params: ', req.body)
     const { name, quantityAmount, quantityType, estimatedDurability, purchaseDate, stashId } = req.body
-    if (!name || !quantityAmount || !quantityType || !estimatedDurability || !purchaseDate || !stashId) {
+    if (!name || !quantityAmount || !quantityType || !estimatedDurability || !purchaseDate || !stashId || name === '' || purchaseDate === '' || estimatedDurability === '') {
       return res.status(400).json({ error: 'Invalid request' });
     }
     const newItemCreated = await itemService.createItem(req.body);
+    console.log('sending new item data: ', newItemCreated)
     return res.status(200).json(newItemCreated);
   } catch (error) {
     return res.status(500).json({ message: error.message })
@@ -95,7 +97,8 @@ const getOneItem = async (req, res) => {
 
 const updateItem = async (req, res) => {
   try {
-    if (!req.body.id) {
+    console.log(req.params)
+    if (!req.params.itemId) {
       return res.status(404).json({ message: 'Item not found!' })
     }
     const updateData = await itemService.updateItem(req.body);
