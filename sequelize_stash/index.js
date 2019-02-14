@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const StashRouter = require('./router/stashRouter');
+const StashRouter = require('./src/router/stashRouter');
 const cors = require('cors');
 
 const app = express();

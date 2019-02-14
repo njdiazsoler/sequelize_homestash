@@ -3,6 +3,7 @@ const Stash = require('../models/Stash');
 
 const createItem = async item => {
   try {
+    console.log('creating new item with data: ', item)
     let newItem = await Item.create(item);
     newItem = newItem.dataValues;
     return newItem;
