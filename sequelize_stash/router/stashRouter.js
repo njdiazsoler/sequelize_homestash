@@ -11,11 +11,11 @@ StashRouter.route('/')
 
 StashRouter.route('/:name')
   .get(stashController.getItemsData)
-  .post(stashController.createItem)
+  .post(stashController.createItem);
   
-  StashRouter.route('/:name/:itemId')
+StashRouter.route('/:name/:itemId')
   .delete(stashController.deleteItem)
   .get(stashController.getOneItem)
-  .put(stashController.updateItem)
+  .put(stashController.updateItem);
 
 module.exports = StashRouter;

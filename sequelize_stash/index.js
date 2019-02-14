@@ -1,5 +1,5 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express');
+const bodyParser = require('body-parser');
 const StashRouter = require('./router/stashRouter');
 const cors = require('cors');
 
@@ -15,5 +15,5 @@ app.use('/home', StashRouter);
 app.disable('x-powered-by');
 
 app.listen(3002, () => {
-  console.log(`Running on http://localhost:3002`)
+  console.log(`Running on http://localhost:3002`);
 });

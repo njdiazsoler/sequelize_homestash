@@ -4,10 +4,9 @@ const createStash = async (name, id) => {
   try {
     let createdStash = await Stash.create( {name: name, createdById: id});
     newStash = createdStash.dataValues;
-    console.log(newStash);
     return newStash;
   } catch(error) {
-    console.log(error);
+    console.log('this is a repo error', error);
     throw { status: 500, message: 'Internal Server Error' };
   }
 }
@@ -15,8 +14,9 @@ const createStash = async (name, id) => {
 const getAllStashes = async () => {
   try{
     const results = await Stash.findAll();
-    return results
+    return results;
   } catch(error){
+    console.log('this is a repo error', error);
     throw { status: 500, message: 'Internal Server Error' };
   }
 }

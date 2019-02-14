@@ -3,7 +3,7 @@ const StashRepository = require('../repository/stashRepository');
 const createStash = async (name, id) => {
   try{
     const newStash = await StashRepository.createStash(name, id);
-    return newStash
+    return newStash;
   } catch(error){
     throw { status: error.status, message: error.message || error };
   }

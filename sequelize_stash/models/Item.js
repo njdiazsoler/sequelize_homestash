@@ -28,19 +28,11 @@ const Item = db.define('item', {
   },
   estimatedDurability: {
     allowNull: true,
-    type: Sequelize.DATE,
+    type: Sequelize.DATEONLY,
   },
   purchaseDate: {
     allowNull: false,
-    type: Sequelize.DATE,
-  },
-  createdAt: {
-    type: Sequelize.DATE,
-    // defaultValue: Sequelize.DATE,
-  },
-  updatedAt: {
-    type: Sequelize.DATE,
-    // defaultValue: Sequelize.DATE,
+    type: Sequelize.DATEONLY,
   },
 },{
   timestamps: true
