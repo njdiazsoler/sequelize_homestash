@@ -13,4 +13,15 @@ const sequelize = new Sequelize('home_stash', 'homestash', '123456', {
   timezone: '-03:00'
 });
 
+// const db = {};
+
+// db.Sequelize = Sequelize;  
+// db.sequelize = sequelize;
+
+// db.stashes = require('../models/Stash');
+// db.items = require('../models/Item');
+
+// db.stashes.hasMany(db.items);
+// db.items.belongsTo(db.stashes)
+
 module.exports = sequelize;

@@ -1,19 +1,23 @@
 const Stash = require('../models/Stash');
+const Item = require('../models/Item');
 
 const createStash = async (name, id) => {
   try {
-    let createdStash = await Stash.create( {name: name, createdById: id});
+    let createdStash = await Stash.create({ name: name, createdById: id });
     newStash = createdStash.dataValues;
     return newStash;
   } catch(error) {
-    console.log('this is a repo error', error);
     throw { status: 500, message: 'Internal Server Error' };
   }
 }
 
 const getAllStashes = async () => {
   try{
-    const results = await Stash.findAll();
+    const results = await Stash.findAll(
+      {
+        include: [{ model: Item}]
+      }
+    );
     return results;
   } catch(error){
     console.log('this is a repo error', error);

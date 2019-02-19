@@ -43,7 +43,7 @@ const Item = db.define('item', {
 // }
 
 Item.belongsTo(Stash, { foreignKey: 'stashId', sourceKey: 'id' });
-
+Stash.hasMany(Item);
 // { as: 'stash', foreignKey: 'stashId' }
 
 Item.sync();

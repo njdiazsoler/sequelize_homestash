@@ -21,15 +21,9 @@ const Stash = db.define('stash', {
     allowNull: false,
     type: Sequelize.STRING,
   },
-  createdAt: {
-    type: Sequelize.DATE,
-    // defaultValue: Sequelize.DATE,
-  },
-  updatedAt: {
-    type: Sequelize.DATE,
-    // defaultValue: Sequelize.DATE,
-  },
 })
+
+// Stash.hasMany(Item)
 
 Stash.sync();
 
