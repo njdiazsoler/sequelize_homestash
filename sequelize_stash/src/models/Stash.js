@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../config/db')
 const uuid = require('uuid/v4')
-// const Item = require('./Item')
 
 const Stash = db.define('stash', {
   id: {
@@ -22,8 +21,6 @@ const Stash = db.define('stash', {
     type: Sequelize.STRING,
   },
 })
-
-// Stash.hasMany(Item)
 
 Stash.sync();
 

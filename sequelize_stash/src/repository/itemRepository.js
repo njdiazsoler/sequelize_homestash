@@ -48,7 +48,6 @@ const findItem = async id => {
 const updateItem = async (item) => {
   try {
     const updatedItem = await Item.update(item, { where: { id: item.id } });
-    console.log('updatedItem: ', updatedItem);
     return updatedItem;
   } catch (error) {
     console.log('this is a repo error', error);

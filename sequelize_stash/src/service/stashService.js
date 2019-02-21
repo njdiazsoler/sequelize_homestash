@@ -1,3 +1,4 @@
+const moment = require('moment');
 const StashRepository = require('../repository/stashRepository');
 
 const createStash = async (name, id) => {
@@ -11,8 +12,19 @@ const createStash = async (name, id) => {
 
 const getAllStashes = async () => {
   try {
-    const stashData = await StashRepository.getAllStashes();
-    return stashData;
+    const stashData = await StashRepository.getAllStashes();  
+    let newStashData = JSON.parse(JSON.stringify(stashData));
+    newStashData.forEach(data => {
+      let rearrangedItems = data.items.slice()
+      rearrangedItems.forEach(item => {
+        let estimatedDate = moment(item.estimatedDurability).startOf('day');
+        let curDate = moment().startOf('day');
+        let durabilityInDays = moment(estimatedDate - curDate).format('D[ day(s)]');
+        item.durability = durabilityInDays;
+        console.log('item processed: ', item);
+      })
+    })
+    return newStashData;
   } catch(error) {
     throw { status: error.status, message: error.message || error };
   }
