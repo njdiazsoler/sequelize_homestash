@@ -1,4 +1,5 @@
 const Stash = require('../models/Stash');
+const Item = require('../models/Item');
 
 const createStash = async stash => {
   try {
@@ -14,10 +15,8 @@ const createStash = async stash => {
 const findStash = async id => {
   try {
     if (!id) {
-      console.log('va por acá')
-      let stash = await Stash.findAndCountAll({raw:true});
+      let stash = await Stash.findAndCountAll( { include: [Item] });
       stash = stash.rows
-      console.log(stash);
       return stash;
     }
     console.log('va por fuera del if del repo')

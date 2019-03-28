@@ -22,4 +22,6 @@ const Stash = db.define('stash', {
 
 Stash.sync();
 
+// Stash.hasMany(Item, { foreignKey: 'stashId' })
+
 module.exports = Stash;

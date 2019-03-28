@@ -37,6 +37,7 @@ const Item = db.define('item', {
 })
 
 Item.belongsTo(Stash);
+Stash.hasMany(Item)
 
 Item.sync();
 
