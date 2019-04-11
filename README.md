@@ -46,26 +46,69 @@ Get stash data:
 
 Response:
 {
-    "stashData": [
+  "stashData": [
+    {
+      "id": "090877ac-5ebb-427d-85bf-391636c352b0",
+      "name": "bathroom",
+      "createdById": "1",
+      "createdAt": "2019-02-06T19:53:20.000Z",
+      "updatedAt": "2019-02-06T19:53:20.000Z",
+      "items": [
         {
-            "id": "090877ac-5ebb-427d-85bf-391636c352b0",
-            "name": "bathroom",
-            "createdById": "1",
-            "createdAt": "2019-02-06T19:53:20.000Z",
-            "updatedAt": "2019-02-06T19:53:20.000Z",
-            "items": [
-                {
-                    "id": "d4c15959-45d1-4176-80be-fe4a4588b534",
-                    "name": "Toilet cleaner",
-                    "quantityAmount": 2,
-                    "quantityType": "units",
-                    "estimatedDurability": "2019-03-14T00:00:00.000Z",
-                    "purchaseDate": "2019-02-14T00:00:00.000Z",
-                    "createdAt": "2019-02-14T17:43:00.000Z",
-                    "updatedAt": "2019-02-14T17:43:00.000Z",
-                    "stashId": "090877ac-5ebb-427d-85bf-391636c352b0"
-                }
-            ]
-        },
-    ]
+          "id": "d4c15959-45d1-4176-80be-fe4a4588b534",
+          "name": "Toilet cleaner",
+          "quantityAmount": 2,
+          "quantityType": "units",
+          "estimatedDurability": "2019-03-14T00:00:00.000Z",
+          "purchaseDate": "2019-02-14T00:00:00.000Z",
+          "createdAt": "2019-02-14T17:43:00.000Z",
+          "updatedAt": "2019-02-14T17:43:00.000Z",
+          "stashId": "090877ac-5ebb-427d-85bf-391636c352b0"
+        }
+      ]
+    },
+  ]
 }
+
+`GET /:stashId`
+
+Response:
+
+{
+  "stashData": {
+    "id": "090877ac-5ebb-427d-85bf-391636c352b0",
+    "name": "bathroom",
+    "createdById": "1",
+    "createdAt": "2019-02-06T19:53:20.000Z",
+    "updatedAt": "2019-02-06T19:53:20.000Z"
+  }
+}
+
+`GET /:stashId/items`
+
+Response:
+
+{
+  "itemsData": [
+    {
+      "id": "d4c15959-45d1-4176-80be-fe4a4588b534",
+      "name": "Toilet cleaner",
+      "quantityAmount": 2,
+      "quantityType": "units",
+      "estimatedDurability": "2019-03-14T00:00:00.000Z",
+      "purchaseDate": "2019-02-14T00:00:00.000Z",
+      "createdAt": "2019-02-14T17:43:00.000Z",
+      "updatedAt": "2019-02-14T17:43:00.000Z",
+      "stashId": "090877ac-5ebb-427d-85bf-391636c352b0"
+    }
+  ]
+}
+
+`POST /:stashId/items`
+
+Required: name, quantityAmount, quantityType, estimatedDurability, purchaseDate.
+
+
+
+
+
