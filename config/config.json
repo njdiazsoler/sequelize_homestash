@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "home_stash",
+    "password": "0303456",
+    "database": "home_stash",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "home_stash",
+    "password": "0303456",
+    "database": "home_stash",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "home_stash",
+    "password": "0303456",
+    "database": "home_stash",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
