@@ -1,9 +1,8 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('home_stash', 'homestash', '123456', {
+const sequelize = new Sequelize('home_stash', 'home_stash', '0303456', {
   host: 'localhost',
   dialect: 'mysql',
-  operatorsAliases: false,
   pool: {
     max: 10,
     min: 0,
